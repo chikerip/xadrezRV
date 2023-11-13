@@ -1,0 +1,11 @@
+Model Information:
+* title:	Chesspiece
+* source:	https://sketchfab.com/3d-models/chesspiece-1c73cb30a7c44b73acd80c6c8af1309b
+* author:	dyran (https://sketchfab.com/Dyran)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Chesspiece" (https://sketchfab.com/3d-models/chesspiece-1c73cb30a7c44b73acd80c6c8af1309b) by dyran (https://sketchfab.com/Dyran) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

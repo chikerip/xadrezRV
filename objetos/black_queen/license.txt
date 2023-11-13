@@ -1,0 +1,11 @@
+Model Information:
+* title:	Queen LP
+* source:	https://sketchfab.com/3d-models/queen-lp-564bb530ef814c118eab670c4c169b20
+* author:	AlexandraMartins (https://sketchfab.com/martins.s.alexandra)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Queen LP" (https://sketchfab.com/3d-models/queen-lp-564bb530ef814c118eab670c4c169b20) by AlexandraMartins (https://sketchfab.com/martins.s.alexandra) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
