@@ -25,8 +25,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const searchParams = new URLSearchParams(window.location.search);
-let id = searchParams.get('id');
 
 export async function getDocsGame() {
   const docRef = collection(db, 'xadrez')
