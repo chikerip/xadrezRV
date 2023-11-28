@@ -1,4 +1,4 @@
-let gameStatus = [], lastPiece;
+let gameStatus = [], lastPiece = null;
 
 function refershGameStatus(cordenada, piece, type) {
     let obj = {

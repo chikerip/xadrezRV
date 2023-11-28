@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <title>Game</title>
+</head>
+<body>
+    <a-scene onload="onloading()" id="scene">
+        <a-assets>
+            <img id="tabuleiro" src="../img/4249098-abstract-background-black-and-white-chessboard-pattern-optico-ilusao-textura-para-seu-design-gratis-vetor.jpg">
+            <!-- peças brancas -->
+            <a-assest-item id="reiBranco" src="../objetos/white_king/scene.gltf"></a-assest-item>
+            <a-assest-item id="rainhaBranco" src="../objetos/white_queen/scene.gltf"></a-assest-item>
+            <a-assest-item id="torreBranco" src="../objetos/white_torre/scene.gltf"></a-assest-item>
+            <a-assest-item id="bispoBranco" src="../objetos/white_bispo/scene.gltf"></a-assest-item>
+            <a-assest-item id="cavaloBranco" src="../objetos/whtie_cavalo/scene.gltf"></a-assest-item>
+            <a-assest-item id="peaoBranco" src="../objetos/white_peao/scene.gltf"></a-assest-item>
+            <!-- peças pretas -->
+            <a-assest-item id="reiPreto" src="../objetos/black_cavalo/scene.gltf"></a-assest-item>
+            <a-assest-item id="rainhaPreto" src="../objetos/black_queen/scene.gltf"></a-assest-item>
+            <a-assest-item id="torrePreto" src="../objetos/black_torre/scene.gltf"></a-assest-item>
+            <a-assest-item id="bispoPreto" src="../objetos/black_bishop/scene.gltf"></a-assest-item>
+            <a-assest-item id="cavaloPreto" src="../objetos/black_knight/scene.gltf"></a-assest-item>
+            <a-assest-item id="peaoPreto" src="../objetos/black_chess/scene.gltf"></a-assest-item>
+        </a-assets>
+
+        <a-sky src="../img/why-sky-blue-2db86ae.jpg"></a-sky>
+        <a-entity id="rig" position="20 30 40" rotation="-50 0 0">
+            <a-camera id="camera" wasd-controls-enabled="false">
+                
+            </a-camera>
+        </a-entity>
+    </a-scene>
+    <script type="module" src="../script/game.js"></script>
+    <script type="module" src="../script/firebaseGame.js"></script>
+</body>
+</html>
