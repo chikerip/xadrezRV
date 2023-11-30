@@ -1,7 +1,7 @@
 import { getDocGame, setDocGame } from "./firebase.js";
 const searchParams = new URLSearchParams(window.location.search);
 let id = searchParams.get('id');
-let scene = document.getElementById('scene'), lastPiece = null, gameStatus = null, turn = null, youTurn = null, oneTimeSnapshot = false, oneTimePiece = false;
+let scene = document.getElementById('scene'), lastPiece = null, gameStatus = null, turn = null, youTurn = null,player = null, oneTimeSnapshot = false, oneTimePiece = false;
 
 function update(killPiece) {
     if(killPiece !== null){
@@ -136,12 +136,11 @@ async function reloadGame(){
     gameStatus = doc.gameData;
 
     if(oneTimePiece !== false){
-        console.log('oi');
         let allPieces = document.getElementsByClassName('piece');
         
-        allPieces.forEach((elm) => {
-            elm.remove();
-        });
+        for(let i = 0; i < allPieces.length; i++){
+            allPieces[i].remove();
+        }
     } else {
         oneTimePiece = !oneTimePiece
     };
@@ -164,30 +163,44 @@ async function reloadGame(){
 
         for(let i = 0; i < allBox.length; i++){
             allBox[i].addEventListener('click', (e) => {
-                if(youTurn == turn){
-                    movePiece(e.target);
-                };
+                 movePiece(e.target);
             })
         }
 
         for(let i = 0; i < allPieces.length; i++){
             allPieces[i].addEventListener('click', (e) => {
-                lastPiece = e.target;
+                let piece = e.target.id;
+                piece = piece.slice(-6, -1);
+                if(youTurn == turn){
+
+                    if(player == 2 && (piece == 'Preto' || piece == 'aPret')){
+                        lastPiece = e.target;
+                    };
+                    if(player == 1 && (piece == 'ranco' || piece == 'Branc')){
+                        lastPiece = e.target;
+                        console.log('joga');
+                    }
+                }
             })
         }
     },1000)
 }
 
 export function camera(data){
-    console.log(data)
+    let rig = document.getElementById('rig');
 
     if(oneTimeSnapshot == false){
         if(data.players == 2){
             youTurn = !data.turn;
+            player = data.players;
+            rig.setAttribute('position', '20 30 -30');
+            rig.setAttribute('rotation', '-50 180 0');
     
         } else if (data.players == 1){
             youTurn = data.turn;
-    
+            player = data.players;
+            rig.setAttribute('position', '20 30 30');
+            rig.setAttribute('rotation', '-50 0 0');
         }
         oneTimeSnapshot = !oneTimeSnapshot;
     } else {
@@ -202,6 +215,6 @@ export function camera(data){
 
     let cameraa = document.getElementById('camera');
         cameraa.appendChild(cursor);
-}
 
-createGame();
+    createGame();
+}

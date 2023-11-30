@@ -13,7 +13,6 @@ async function newGame(){
 
 async function joinGame(id){
     await joinnGame(id, gameData, true);
-    console.log(id)
     window.location.href = `http://127.0.0.1:5500/src/pages/game.html?id=${id}`
 };
 
