@@ -17,6 +17,7 @@ async function joinGame(id){
 };
 
 async function tableConstrution() {
+    let i = 0;
     const table = document.getElementById('gamesTable')
     getDocsGame().then((snapshot) => {
         snapshot.forEach((doc) =>{
@@ -25,17 +26,18 @@ async function tableConstrution() {
             <tr>
                 <td>${doc.id}</td>
                 <td>${data.players}</td>
-                <td> <button class="${doc.id} ${data.players}" type="button" id="joinGame">Join</button> </td>
+                <td> <button class="${doc.id} ${data.players}" type="button" id="joinGame${i}">Join</button> </td>
             </tr>
             `
 
-            document.getElementById('joinGame').addEventListener('click', (e) => {
-                let values = e.target.classList
+            document.getElementById(`joinGame${i}`).addEventListener('click', (e) => {
+                let values = e.target.classList;
 
                 if(values[1] == 1){
                     joinGame(values[0])
                 }
             });
+            i++
             // console.log(doc.data(), doc.id)
         });
     });

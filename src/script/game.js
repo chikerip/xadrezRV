@@ -132,58 +132,65 @@ function createGame(){
 }
 
 async function reloadGame(){
-    const doc = await getDocGame(id);
-    gameStatus = doc.gameData;
+    async function piececreator(){
+        const doc = await getDocGame(id);
+        gameStatus = doc.gameData;
+
+        gameStatus.forEach((obj) => {
+            let box = document.getElementsByClassName(obj.position);
+            let position = box[0].getAttribute('position');
+    
+            let piece = document.createElement('a-entity');
+                    piece.setAttribute('position', `${position.x} ${position.y + 1} ${position.z}`)
+                    piece.setAttribute('class', `piece ${obj.position}`)
+                    piece.setAttribute('id', `${obj.type}`)
+                    piece.setAttribute('gltf-model', `#${obj.piece}`)
+            scene.appendChild(piece)
+        });
+    
+        setTimeout(()=>{
+            let allPieces = document.getElementsByClassName("piece");
+            let allBox = document.getElementsByTagName('a-box');
+    
+            for(let i = 0; i < allBox.length; i++){
+                allBox[i].addEventListener('click', (e) => {
+                     movePiece(e.target);
+                })
+            }
+    
+            for(let i = 0; i < allPieces.length; i++){
+                allPieces[i].addEventListener('click', (e) => {
+                    let piece = e.target.id;
+                    piece = piece.slice(-6, -1);
+                    if(youTurn == turn){
+    
+                        if(player == 2 && (piece == 'Preto' || piece == 'aPret')){
+                            lastPiece = e.target;
+                        };
+                        if(player == 1 && (piece == 'ranco' || piece == 'Branc')){
+                            lastPiece = e.target;
+                        }
+                    }
+                })
+            }
+        },1000)
+
+    };
 
     if(oneTimePiece !== false){
         let allPieces = document.getElementsByClassName('piece');
         
         for(let i = 0; i < allPieces.length; i++){
             allPieces[i].remove();
+
+            if(i == allPieces.length - 1){
+                piececreator();
+            }
         }
     } else {
-        oneTimePiece = !oneTimePiece
+        oneTimePiece = !oneTimePiece;
+        piececreator();
     };
-
-    gameStatus.forEach((obj) => {
-        let box = document.getElementsByClassName(obj.position);
-        let position = box[0].getAttribute('position');
-
-        let piece = document.createElement('a-entity');
-                piece.setAttribute('position', `${position.x} ${position.y + 1} ${position.z}`)
-                piece.setAttribute('class', `piece ${obj.position}`)
-                piece.setAttribute('id', `${obj.type}`)
-                piece.setAttribute('gltf-model', `#${obj.piece}`)
-        scene.appendChild(piece)
-    });
-
-    setTimeout(()=>{
-        let allPieces = document.getElementsByClassName("piece");
-        let allBox = document.getElementsByTagName('a-box');
-
-        for(let i = 0; i < allBox.length; i++){
-            allBox[i].addEventListener('click', (e) => {
-                 movePiece(e.target);
-            })
-        }
-
-        for(let i = 0; i < allPieces.length; i++){
-            allPieces[i].addEventListener('click', (e) => {
-                let piece = e.target.id;
-                piece = piece.slice(-6, -1);
-                if(youTurn == turn){
-
-                    if(player == 2 && (piece == 'Preto' || piece == 'aPret')){
-                        lastPiece = e.target;
-                    };
-                    if(player == 1 && (piece == 'ranco' || piece == 'Branc')){
-                        lastPiece = e.target;
-                        console.log('joga');
-                    }
-                }
-            })
-        }
-    },1000)
 }
 
 export function camera(data){
