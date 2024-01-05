@@ -2,6 +2,7 @@ import { getDocGame, setDocGame } from "./firebase.js";
 const searchParams = new URLSearchParams(window.location.search);
 let id = searchParams.get('id');
 let scene = document.getElementById('scene'), lastPiece = null, gameStatus = null, turn = null, youTurn = null,player = null, oneTimeSnapshot = false, oneTimePiece = false;
+let running = false;
 
 function update(killPiece) {
     if(killPiece !== null){
@@ -178,13 +179,17 @@ async function reloadGame(){
     };
 
     if(oneTimePiece !== false){
-        let allPieces = document.getElementsByClassName('piece');
-        
-        for(let i = 0; i < allPieces.length; i++){
-            allPieces[i].remove();
+        if(running == false){
+            running = true;
+            let allPieces = document.getElementsByClassName('piece');
+            
+            for(let i = 0; i < allPieces.length; i++){
+                allPieces[i].remove();
 
-            if(i == allPieces.length - 1){
-                piececreator();
+                if(i == allPieces.length - 1){
+                    piececreator();
+                    running = false;
+                }
             }
         }
     } else {

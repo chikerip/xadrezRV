@@ -11,11 +11,6 @@ async function newGame(){
     window.location.href = `http://127.0.0.1:5500/src/pages/game.html?id=${id}`
 };
 
-async function joinGame(id){
-    await joinnGame(id, gameData, true);
-    window.location.href = `http://127.0.0.1:5500/src/pages/game.html?id=${id}`
-};
-
 async function tableConstrution() {
     let i = 0;
     const table = document.getElementById('gamesTable')
@@ -30,14 +25,23 @@ async function tableConstrution() {
             </tr>
             `
 
-            document.getElementById(`joinGame${i}`).addEventListener('click', (e) => {
-                let values = e.target.classList;
-
-                if(values[1] == 1){
-                    joinGame(values[0])
-                }
-            });
             i++
+
+            if(i == snapshot.length){
+                let elem = document.getElementsByClassName(`join`);
+
+                for(let p = 0; p < elem.length; p++){
+                    console.log('a')
+                    elem[p].addEventListener('click', async(e) => {
+                        let values = e.target.classList;
+        
+                        if(1 == values[1]){
+                            await joinnGame(values[0], gameData, true);
+                            window.location.href = `${location.origin}/src/pages/game.html?id=${values[0]}`
+                        }
+                    });
+                }
+            }
             // console.log(doc.data(), doc.id)
         });
     });
